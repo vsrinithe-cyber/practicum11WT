@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookhive - Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e8edf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #9baac0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #263c50;
+        }
+
+        p {
+            text-align: center;
+            color: #52677d;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #9baac0;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #263c50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #172b3d;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>📚 Bookhive</h2>
+    <p>Digital Library & Book Subscription Registration</p>
+
+    <form>
+
+        <input type="text" id="name"
+               placeholder="Full Name">
+
+        <input type="text" id="email"
+               placeholder="Email Address">
+
+        <input type="text" id="phone"
+               placeholder="Phone Number">
+
+        <select id="interest">
+            <option value="">Select Book Category</option>
+            <option>Fiction</option>
+            <option>Science</option>
+            <option>Technology</option>
+            <option>History</option>
+            <option>Education</option>
+        </select>
+
+        <select id="plan">
+            <option value="">Select Subscription Plan</option>
+            <option>Monthly Plan</option>
+            <option>Yearly Plan</option>
+            <option>Free Plan</option>
+        </select>
+
+        <input type="password" id="password"
+               placeholder="Create Password">
+
+        <input type="password" id="confirm"
+               placeholder="Confirm Password">
+
+        <button type="button" onclick="processForm()">
+            Register
+        </button>
+
+    </form>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function processForm() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let interest = document.getElementById("interest").value;
+    let plan = document.getElementById("plan").value;
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm").value;
+
+    let message = document.getElementById("message");
+
+    // Check empty fields
+    if (name == "" || email == "" || phone == "" ||
+        interest == "" || plan == "" ||
+        password == "" || confirm == "") {
+
+        message.style.color = "red";
+        message.innerHTML = "Please fill all the fields!";
+    }
+
+    // Check email
+    else if (!email.includes("@") || !email.includes(".")) {
+
+        message.style.color = "red";
+        message.innerHTML = "Enter a valid email address!";
+    }
+
+    // Only numbers validation
+    else if (!/^[0-9]{10}$/.test(phone)) {
+
+        message.style.color = "red";
+        message.innerHTML = "Enter only 10 digits in phone number!";
+    }
+
+    // Password validation
+    else if (password.length < 6) {
+
+        message.style.color = "red";
+        message.innerHTML = "Password must contain 6 characters!";
+    }
+
+    // Confirm password
+    else if (password != confirm) {
+
+        message.style.color = "red";
+        message.innerHTML = "Passwords do not match!";
+    }
+
+    // Display successful registration
+    else {
+
+        message.style.color = "green";
+        message.innerHTML =
+            "Registration Successful! Welcome to Bookhive, " + name + "!";
+    }
+}
+
+</script>
+
+</body>
+</html>
